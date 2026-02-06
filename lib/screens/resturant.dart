@@ -20,34 +20,36 @@ class Task4 extends StatelessWidget {
     'Drinks',
     'Hot Choco',
   ];
+
   final List<String> images = const [
     'images/WhatsApp Image 2026-02-05 at 22.26.22.jpeg',
     'images/WhatsApp Image 2026-02-05 at 22.26.44.jpeg',
     'images/WhatsApp Image 2026-02-05 at 22.26.54.jpeg',
     'images/WhatsApp Image 2026-02-05 at 22.27.12.jpeg',
   ];
+
   final List<String> textPic = const [
     'Family Pack',
     'Morning Breakfast',
     '50% OFF',
     'Lunch Deal',
   ];
+
   final List<String> textResturant = const [
     'Happy Restaurant 1',
     'Happy Restaurant 2',
     'Happy Restaurant 3',
   ];
+
   final List<String> RecentORder = const [
-    ' Margherita Pizaa',
-    ' Chicken Shawerma',
+    'Margherita Pizza',
+    'Chicken Shawerma',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -80,20 +82,22 @@ class Task4 extends StatelessWidget {
                     ],
                   ),
                   trailing: CircleAvatar(
+                    radius: 25,
                     backgroundImage: AssetImage(
                       "images/WhatsApp Image 2026-02-03 at 01.19.24.jpeg",
                     ),
-                    radius: 25,
-                    backgroundColor: Colors.grey,
                   ),
                 ),
+
                 const Divider(indent: 20, endIndent: 20),
                 const SizedBox(height: 10),
+
                 const Text(
                   'Categories',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 15),
+
                 SizedBox(
                   height: 110,
                   child: ListView.builder(
@@ -126,14 +130,15 @@ class Task4 extends StatelessWidget {
                     },
                   ),
                 ),
-                const SizedBox(height: 10),
+
+                const SizedBox(height: 15),
                 const Text(
                   'Popular Deals 🔥',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 10),
+
                 GridView.builder(
-                  padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -185,103 +190,111 @@ class Task4 extends StatelessWidget {
                     );
                   },
                 ),
+
                 const SizedBox(height: 25),
                 const Text(
                   "Nearby Restaurants",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 0),
+
                 ListView.separated(
-                  padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: textResturant.length,
                   separatorBuilder: (context, index) =>
-                      const Divider(indent: 20, endIndent: 20, thickness: 1),
+                      const Divider(indent: 20, endIndent: 20),
                   itemBuilder: (context, index) {
                     return ListTile(
-                      leading: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'images/WhatsApp Image 2026-02-05 at 22.27.12.jpeg',
-                            fit: BoxFit.cover,
-                          ),
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          'images/WhatsApp Image 2026-02-05 at 22.27.12.jpeg',
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
                         ),
                       ),
                       title: Text(
                         textResturant[index],
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                       ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("BBQ * Burger * Fast Food"),
-                          Row(
-                            children: const [
-                              Icon(Icons.star, color: Colors.orange, size: 16),
-                              SizedBox(width: 4),
-                              Text("4.5"),
-                            ],
-                          ),
+                      subtitle: Row(
+                        children: const [
+                          Icon(Icons.star, color: Colors.orange, size: 16),
+                          SizedBox(width: 4),
+                          Text("4.5"),
                         ],
                       ),
                     );
                   },
                 ),
+
                 const SizedBox(height: 25),
                 const Text(
                   'Recent Order',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 10),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 1.8,
-                  ),
-                  itemCount: RecentORder.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: ListTile(
-                          leading: Icon(Icons.history, color: Colors.orange),
-                          title: Text(
-                            RecentORder[index],
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            "Delivered yesterday",
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          trailing: Text(
-                            "Re-order",
-                            style: TextStyle(
-                              color: Colors.deepPurple,
-                              fontWeight: FontWeight.bold,
+                const SizedBox(height: 20),
+                SizedBox(
+                  height: 170,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: RecentORder.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 16),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        width: 280,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: Colors.grey.withOpacity(.3)
+                          )
+                        ),
+                        child: Center(
+                          child: ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: const Icon(
+                              Icons.history,
+                              size: 30,
+                              color: Colors.orange,
+                            ),
+                            title: Text(
+                              RecentORder[index],
+
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+
+                            subtitle: const Text(
+                              "Delivered yesterday",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                              ),
+                              softWrap: true,
+                            ),
+                            trailing: const Text(
+                              "Re-order",
+                              style: TextStyle(
+                                color: Colors.deepPurple,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
-                const SizedBox(height: 10),
+
+                const SizedBox(height: 20),
               ],
             ),
           ),
