@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class FirstTask extends StatelessWidget {
-  const FirstTask({super.key});
+   FirstTask({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 3, 4, 18),
+      backgroundColor:  Color.fromARGB(255, 3, 4, 18),
       appBar: AppBar(
         title: Center(
           child: Text(

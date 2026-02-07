@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ThirdTask extends StatelessWidget {
-  ThirdTask({super.key}); // Constructor
+  ThirdTask({super.key}); 
 
   final List<String> tabs = [
     'All',
@@ -47,7 +47,7 @@ class ThirdTask extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFFEAF7F4), Color(0xFFDFF1ED), Color(0xFFBFE6DD)],
+            colors: [Color.fromARGB(255, 242, 250, 250), Color.fromARGB(255, 235, 247, 245), Color(0xFFBFE6DD)],
           ),
         ),
         child: Column(

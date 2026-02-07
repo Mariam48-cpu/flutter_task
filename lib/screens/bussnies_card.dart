@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SecondTask extends StatelessWidget {
-  const SecondTask({super.key});
+   SecondTask({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 115, 163, 218),
+        backgroundColor:  Color.fromARGB(255, 115, 163, 218),
         title: Center(
           child: Text(
             'Profile Card',
@@ -18,7 +18,7 @@ class SecondTask extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -95,11 +95,11 @@ class SecondTask extends StatelessWidget {
                   ),
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding:  EdgeInsets.all(16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Spacer(flex: 2),
+                          Spacer(flex: 1),
                           Icon(Icons.email, color: Color(0xFF166D98), size: 30),
                           Spacer(flex: 1),
                           Icon(
@@ -109,6 +109,7 @@ class SecondTask extends StatelessWidget {
                           ),
                           Spacer(flex: 1),
                           Icon(Icons.phone, color: Color(0xFF166D98), size: 30),
+                          Spacer(flex: 1),
                         ],
                       ),
                     ),

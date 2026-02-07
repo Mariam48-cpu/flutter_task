@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Task4 extends StatelessWidget {
-  const Task4({super.key});
+   Task4({super.key});
 
-  final List<String> tabs = const ['🍔', '🍕', '🍖', '🍩', '🥤', '☕'];
-  final List<Color> colors = const [
+  final List<String> tabs =  ['🍔', '🍕', '🍖', '🍩', '🥤', '☕'];
+  final List<Color> colors =  [
     Color(0xFFEFE378),
     Color(0xFFEB96B3),
     Color(0xFFBAB6B6),
@@ -12,7 +12,7 @@ class Task4 extends StatelessWidget {
     Color(0xFF89C2F0),
     Color(0xFFC4C3C3),
   ];
-  final List<String> labels = const [
+  final List<String> labels =  [
     'Burger',
     'Pizza',
     'BBQ',
@@ -21,7 +21,7 @@ class Task4 extends StatelessWidget {
     'Hot Choco',
   ];
 
-  final List<String> images = const [
+  final List<String> images =  [
     'images/WhatsApp Image 2026-02-05 at 22.26.22.jpeg',
     'images/WhatsApp Image 2026-02-05 at 22.26.44.jpeg',
     'images/WhatsApp Image 2026-02-05 at 22.26.54.jpeg',
@@ -50,7 +50,7 @@ class Task4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -58,13 +58,13 @@ class Task4 extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 40, left: 16, right: 16),
+          padding: EdgeInsets.only(top: 40, left: 16, right: 16),
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const ListTile(
+                ListTile(
                   contentPadding: EdgeInsets.zero,
                   title: Text(
                     "Hello, Ahmed 👋",
@@ -89,14 +89,14 @@ class Task4 extends StatelessWidget {
                   ),
                 ),
 
-                const Divider(indent: 20, endIndent: 20),
-                const SizedBox(height: 10),
+                Divider(indent: 20, endIndent: 20),
+                SizedBox(height: 10),
 
-                const Text(
+                Text(
                   'Categories',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 15),
+                SizedBox(height: 15),
 
                 SizedBox(
                   height: 110,
@@ -105,7 +105,7 @@ class Task4 extends StatelessWidget {
                     itemCount: tabs.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.only(right: 20),
+                        padding:  EdgeInsets.only(right: 20),
                         child: Column(
                           children: [
                             CircleAvatar(
@@ -113,13 +113,13 @@ class Task4 extends StatelessWidget {
                               backgroundColor: colors[index],
                               child: Text(
                                 tabs[index],
-                                style: const TextStyle(fontSize: 25),
+                                style:  TextStyle(fontSize: 25),
                               ),
                             ),
-                            const SizedBox(height: 6),
+                            SizedBox(height: 6),
                             Text(
                               labels[index],
-                              style: const TextStyle(
+                              style:  TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -131,17 +131,17 @@ class Task4 extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 15),
-                const Text(
+                SizedBox(height: 15),
+                Text(
                   'Popular Deals 🔥',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10),
 
                 GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 15,
@@ -178,7 +178,7 @@ class Task4 extends StatelessWidget {
                             left: 12,
                             child: Text(
                               textPic[index],
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -191,8 +191,8 @@ class Task4 extends StatelessWidget {
                   },
                 ),
 
-                const SizedBox(height: 25),
-                const Text(
+                SizedBox(height: 25),
+                Text(
                   "Nearby Restaurants",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
@@ -203,7 +203,7 @@ class Task4 extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: textResturant.length,
                   separatorBuilder: (context, index) =>
-                      const Divider(indent: 20, endIndent: 20),
+                      Divider(indent: 20, endIndent: 20),
                   itemBuilder: (context, index) {
                     return ListTile(
                       leading: ClipRRect(
@@ -217,10 +217,13 @@ class Task4 extends StatelessWidget {
                       ),
                       title: Text(
                         textResturant[index],
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19,
+                        ),
                       ),
                       subtitle: Row(
-                        children: const [
+                        children: [
                           Icon(Icons.star, color: Colors.orange, size: 16),
                           SizedBox(width: 4),
                           Text("4.5"),
@@ -230,34 +233,33 @@ class Task4 extends StatelessWidget {
                   },
                 ),
 
-                const SizedBox(height: 25),
-                const Text(
+                SizedBox(height: 25),
+                Text(
                   'Recent Order',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20),
                 SizedBox(
                   height: 170,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: RecentORder.length,
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 16),
+                    separatorBuilder: (context, index) => SizedBox(width: 16),
                     itemBuilder: (context, index) {
                       return Container(
                         width: 280,
-                        padding: const EdgeInsets.all(10),
+                        padding:  EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: Colors.grey.withOpacity(.3)
-                          )
+                            color: Colors.grey.withOpacity(.3),
+                          ),
                         ),
                         child: Center(
                           child: ListTile(
                             contentPadding: EdgeInsets.zero,
-                            leading: const Icon(
+                            leading: Icon(
                               Icons.history,
                               size: 30,
                               color: Colors.orange,
@@ -265,13 +267,13 @@ class Task4 extends StatelessWidget {
                             title: Text(
                               RecentORder[index],
 
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                               ),
                             ),
 
-                            subtitle: const Text(
+                            subtitle: Text(
                               "Delivered yesterday",
                               style: TextStyle(
                                 fontSize: 16,
@@ -279,7 +281,7 @@ class Task4 extends StatelessWidget {
                               ),
                               softWrap: true,
                             ),
-                            trailing: const Text(
+                            trailing: Text(
                               "Re-order",
                               style: TextStyle(
                                 color: Colors.deepPurple,
@@ -294,7 +296,7 @@ class Task4 extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 10),
               ],
             ),
           ),
