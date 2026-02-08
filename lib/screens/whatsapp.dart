@@ -47,7 +47,7 @@ class ThirdTask extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color.fromARGB(255, 242, 250, 250), Color.fromARGB(255, 235, 247, 245), Color(0xFFBFE6DD)],
+            colors: [Color.fromARGB(255, 254, 254, 254), Color.fromARGB(255, 235, 247, 245), Color(0xFFBFE6DD)],
           ),
         ),
         child: Column(
@@ -103,12 +103,14 @@ class ThirdTask extends StatelessWidget {
                     ),
                   );
                 },
-                separatorBuilder: (context, index) => Divider(
-                  color: Colors.grey,
-                  height: 1,
-                  indent: 70,
-                  endIndent: 16,
-                ),
+                // separatorBuilder: (context, index) => Divider(
+                //   color: Colors.grey,
+                //   height: 1,
+                //   indent: 70,
+                //   endIndent: 16,
+                // ),
+                separatorBuilder: (context, index) =>
+                SizedBox(height: 1),
               ),
             ),
           ],
