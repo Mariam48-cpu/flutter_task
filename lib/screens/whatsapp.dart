@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class ThirdTask extends StatelessWidget {
-  ThirdTask({super.key}); 
+class ThirdTask extends StatefulWidget {
+  const ThirdTask({super.key});
 
+  @override
+  State<ThirdTask> createState() => _ThirdTaskState();
+}
+
+class _ThirdTaskState extends State<ThirdTask> {
   final List<String> tabs = [
     'All',
     'Unread',
@@ -13,11 +19,27 @@ class ThirdTask extends StatelessWidget {
     'Commerce',
   ];
 
+  final RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
+
+  void _onRefresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+
+    _refreshController.refreshCompleted();
+  }
+
+  @override
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'WhatsApp',
           style: TextStyle(
             color: Colors.white,
@@ -26,28 +48,24 @@ class ThirdTask extends StatelessWidget {
             fontSize: 25,
           ),
         ),
-        backgroundColor: Color(0xFF075E54),
-        iconTheme: IconThemeData(color: Colors.white),
-        actions: [
-          Icon(Icons.search),
-          SizedBox(width: 20),
-          Icon(Icons.more_vert),
-          SizedBox(width: 10),
-        ],
+        backgroundColor: const Color(0xFF075E54),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: Color(0xFF075E54),
-        child: Icon(Icons.chat, color: Colors.white),
+        backgroundColor: const Color(0xFF075E54),
+        child: const Icon(Icons.chat, color: Colors.white),
       ),
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color.fromARGB(255, 254, 254, 254), Color.fromARGB(255, 235, 247, 245), Color(0xFFBFE6DD)],
+            colors: [
+              Color.fromARGB(255, 254, 254, 254),
+              Color.fromARGB(255, 235, 247, 245),
+              Color(0xFFBFE6DD),
+            ],
           ),
         ),
         child: Column(
@@ -57,13 +75,22 @@ class ThirdTask extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: tabs.length,
-                itemBuilder: (BuildContext context, int index) {
+                itemBuilder: (context, index) {
                   return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    margin: EdgeInsets.symmetric(horizontal: 7, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 10,
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 7,
+                      vertical: 10,
+                    ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Color(0xFF075E54), width: 2),
+                      border: Border.all(
+                        color: const Color(0xFF075E54),
+                        width: 2,
+                      ),
                     ),
                     child: Center(
                       child: Text(
@@ -71,7 +98,7 @@ class ThirdTask extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF075E54).withOpacity(.7),
+                          color: const Color(0xFF075E54).withOpacity(.7),
                         ),
                       ),
                     ),
@@ -79,38 +106,38 @@ class ThirdTask extends StatelessWidget {
                 },
               ),
             ),
+   
             Expanded(
-              child: ListView.separated(
-                itemCount: 15,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage(
-                        "images/WhatsApp Image 2026-02-03 at 01.19.24.jpeg",
+              child: SmartRefresher(
+                controller: _refreshController,
+                enablePullDown: true,
+                onRefresh: _onRefresh,
+                child: ListView.separated(
+                  itemCount: 15,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: const CircleAvatar(
+                        backgroundImage: AssetImage(
+                          "images/WhatsApp Image 2026-02-03 at 01.19.24.jpeg",
+                        ),
                       ),
-                    ),
-                    title: Text(
-                      'Ahmed Mohamed',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                      title: const Text(
+                        'Ahmed Mohamed',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
-                    ),
-                    subtitle: Text('السلام عليكم يا هندسه'),
-                    trailing: Text(
-                      '10:30 PM',
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
-                    ),
-                  );
-                },
-                // separatorBuilder: (context, index) => Divider(
-                //   color: Colors.grey,
-                //   height: 1,
-                //   indent: 70,
-                //   endIndent: 16,
-                // ),
-                separatorBuilder: (context, index) =>
-                SizedBox(height: 1),
+                      subtitle: const Text('السلام عليكم يا هندسه'),
+                      trailing: const Text(
+                        '10:30 PM',
+                        style: TextStyle(color: Colors.grey, fontSize: 12),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 1),
+                ),
               ),
             ),
           ],
