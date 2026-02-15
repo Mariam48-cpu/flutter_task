@@ -19,14 +19,37 @@ class _ThirdTaskState extends State<ThirdTask> {
     'Commerce',
   ];
 
+  List<int> chats = List.generate(15, (index) => index);
+
   final RefreshController _refreshController = RefreshController(
     initialRefresh: false,
   );
 
+  //  Pull Down
   void _onRefresh() async {
     await Future.delayed(const Duration(seconds: 2));
 
+    setState(() {
+      chats = List.generate(15, (index) => index);
+    });
+
     _refreshController.refreshCompleted();
+    _refreshController.resetNoData();
+  }
+
+  //  Pull Up 
+  void _onLoading() async {
+    await Future.delayed(const Duration(seconds: 2));
+
+    if (chats.length >= 25) {
+      _refreshController.loadNoData();
+    } else {
+      setState(() {
+        int currentLength = chats.length;
+        chats.addAll(List.generate(5, (index) => currentLength + index));
+      });
+      _refreshController.loadComplete();
+    }
   }
 
   @override
@@ -44,12 +67,10 @@ class _ThirdTaskState extends State<ThirdTask> {
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Roboto',
             fontSize: 25,
           ),
         ),
         backgroundColor: const Color(0xFF075E54),
-        iconTheme: const IconThemeData(color: Colors.white),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -61,11 +82,7 @@ class _ThirdTaskState extends State<ThirdTask> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 254, 254, 254),
-              Color.fromARGB(255, 235, 247, 245),
-              Color(0xFFBFE6DD),
-            ],
+            colors: [Color(0xFFFFFFFF), Color(0xFFEBF7F5), Color(0xFFBFE6DD)],
           ),
         ),
         child: Column(
@@ -78,7 +95,7 @@ class _ThirdTaskState extends State<ThirdTask> {
                 itemBuilder: (context, index) {
                   return Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
+                      horizontal: 12,
                       vertical: 10,
                     ),
                     margin: const EdgeInsets.symmetric(
@@ -96,9 +113,9 @@ class _ThirdTaskState extends State<ThirdTask> {
                       child: Text(
                         tabs[index],
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF075E54).withOpacity(.7),
+                          color: const Color(0xFF075E54).withOpacity(.8),
                         ),
                       ),
                     ),
@@ -106,14 +123,24 @@ class _ThirdTaskState extends State<ThirdTask> {
                 },
               ),
             ),
-   
+
+            /// Smart Refresher
             Expanded(
               child: SmartRefresher(
                 controller: _refreshController,
                 enablePullDown: true,
+                enablePullUp: true,
                 onRefresh: _onRefresh,
+                onLoading: _onLoading,
+                header: const WaterDropHeader(),
+                footer: const ClassicFooter(
+                  idleText: "scroll to reload next",
+                  loadingText: "loading..",
+                  canLoadingText: "سيتم التحميل  ",
+                  noDataText: " No more chats",
+                ),
                 child: ListView.separated(
-                  itemCount: 15,
+                  itemCount: chats.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       leading: const CircleAvatar(
@@ -128,7 +155,7 @@ class _ThirdTaskState extends State<ThirdTask> {
                           fontSize: 18,
                         ),
                       ),
-                      subtitle: const Text('السلام عليكم يا هندسه'),
+                      subtitle: Text('السلام عليكم يا هندسه'),
                       trailing: const Text(
                         '10:30 PM',
                         style: TextStyle(color: Colors.grey, fontSize: 12),
@@ -136,7 +163,7 @@ class _ThirdTaskState extends State<ThirdTask> {
                     );
                   },
                   separatorBuilder: (context, index) =>
-                      const SizedBox(height: 1),
+                      SizedBox(height: 1,)
                 ),
               ),
             ),

@@ -30,12 +30,47 @@ class _PullToRefreshPageState extends State<PullToRefreshPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
       appBar: AppBar(title: const Text("Pull To Refresh")),
       body: Center(
         child: SmartRefresher(
+          //  header: WaterDropHeader(),
+
+
+          // header: ClassicHeader(),
+
+
+          // header: ClassicHeader(
+          //   idleText: "اسحبي لتحديث البيانات",
+          //   refreshingText: "جاري التحديث...",
+          //   completeText: "تم التحديث",
+          //   failedText: "فشل التحديث",
+          // ),
+
+
+          // header: MaterialClassicHeader(),
+
+
+          // header: BezierHeader(),
+
+
+          // header: CustomHeader(
+          //   builder: (context, mode) {
+          //     return Container(
+          //       height: 60,
+          //       alignment: Alignment.center,
+          //       child: Text("Refreshing..." , style: TextStyle(color: const Color.fromARGB(255, 171, 60, 60) , fontSize: 20),),
+          //     );
+          //   },
+          // ),
+
+
+
+
           controller: _refreshController,
           enablePullDown: true,
           onRefresh: _onRefresh,
+          
           child: ListView.builder(
             itemCount: items.length,
             itemBuilder: (context, index) {
